@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .rotateY-180 {
+    transform: rotateY(180deg);
+  }
+
+  .rotateY-0 {
+    transform: rotateY(0deg);
+  }
+
+  .card {
+    @apply relative w-32 h-44 m-2 cursor-pointer transform transition-transform duration-500 ease-in-out;
+    perspective: 1000px; /* Añadir perspectiva para la rotación 3D */
+  }
+
+  .card__inner {
+    @apply relative w-full h-full transition-transform duration-500 ease-in-out;
+    transform-style: preserve-3d;
+  }
+
+  .card--flipped .card__inner {
+    transform: rotateY(180deg); /* Rota el contenedor interno cuando la carta está volteada */
+  }
+
+  .card__front,
+  .card__back {
+    @apply absolute inset-0 w-full h-full flex justify-center items-center bg-gray-200 rounded-lg shadow-md;
+    backface-visibility: hidden; /* Oculta la cara posterior cuando se gira */
+  }
+
+  .card__front {
+    @apply rotateY-0;
+  }
+
+  .card__back {
+    @apply rotateY-180 bg-gray-200 flex justify-center items-center;
+  }
+
+  .card__image {
+    @apply w-full h-full object-cover rounded-lg;
+  }
+
+  .card__question {
+    @apply text-5xl font-bold text-black;
+  }
+}
