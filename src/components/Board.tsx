@@ -1,14 +1,15 @@
 import React from "react";
-import { useGameContext } from "../context/GameContext";
+import { ICard } from "../interfaces/gameInterfaces";
 import Card from "./Card";
+import { useGameContext } from "../context/GameContext";
 
 const Board: React.FC = () => {
   const { cards, handleCardClick } = useGameContext();
 
   return (
-    <div className="grid grid-cols-8 gap-4 p-4">
-      {cards.map((card, index) => (
-        <Card key={index} card={card} onClick={() => handleCardClick(card)} />
+    <div className="grid grid-cols-4 gap-4 p-4 sm:grid-cols-8 lg:grid-cols-10">
+      {cards.map((card: ICard) => (
+        <Card key={card.id} card={card} onClick={() => handleCardClick(card)} />
       ))}
     </div>
   );

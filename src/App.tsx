@@ -4,6 +4,7 @@ import Board from "./components/Board";
 import ScoreBoard from "./components/ScoreBoard";
 import GameOverModal from "./components/GameOverModal";
 import { fetchImages } from "./services/apiService";
+import PlayerName from "./components/PlayerName"; // Asegúrate de importar el componente
 
 const App: React.FC = () => {
   const { initializeGame, playerName, setPlayerName } = useGameContext();
@@ -15,18 +16,14 @@ const App: React.FC = () => {
       initializeGame(imageUrls.map((image) => image.url));
     };
 
-    if (!playerName && !hasPrompted) {
-      const name = prompt("Por favor ingresa tu nombre:");
-      if (name) {
-        setPlayerName(name);
-      }
-      setHasPrompted(true);
-    }
-
     if (playerName) {
       loadImages();
     }
-  }, [initializeGame, playerName, setPlayerName, hasPrompted]);
+  }, [initializeGame, playerName]);
+
+  if (!playerName) {
+    return <PlayerName onSetPlayerName={setPlayerName} />;
+  }
 
   return (
     <div className="app">

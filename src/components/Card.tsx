@@ -11,11 +11,11 @@ const Card: React.FC<CardProps> = ({ card, onClick }) => {
     <div
       className={`card ${
         card.isFlipped ? "card--flipped" : ""
-      } bg-gray-200 rounded-lg shadow-md cursor-pointer transition-transform transform hover:scale-105`}
+      } rounded-lg shadow-md cursor-pointer transition-transform transform hover:scale-105`}
       onClick={onClick}
     >
       <div className="card__inner relative w-full h-full">
-        <div className="card__front flex justify-center items-center p-4 bg-gray-200 rounded-lg">
+        <div className="card__front flex justify-center items-center p-4 rounded-lg">
           <span className="card__question text-6xl font-bold text-black">
             ?
           </span>

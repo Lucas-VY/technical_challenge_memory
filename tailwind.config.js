@@ -5,5 +5,5 @@ module.exports = {
       backfaceVisibility: ["hidden"],
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/forms")],
 };

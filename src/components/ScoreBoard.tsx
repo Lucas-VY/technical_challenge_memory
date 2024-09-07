@@ -1,5 +1,6 @@
 import React from "react";
 import { useGameContext } from "../context/GameContext";
+import LogoutButton from "./LogoutButton";
 
 const ScoreBoard: React.FC = () => {
   const { matches, mistakes } = useGameContext();
@@ -9,6 +10,7 @@ const ScoreBoard: React.FC = () => {
       <h1 className="text-center text-3xl font-bold text-black">
         Aciertos: {matches} - Errores: {mistakes}
       </h1>
+      <LogoutButton />
     </div>
   );
 };
