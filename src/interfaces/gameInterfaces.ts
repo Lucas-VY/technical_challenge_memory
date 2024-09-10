@@ -14,7 +14,7 @@ export interface IGameContext {
   setGameSession: (session: IGameSession | null) => void;
   initializeGame: (images: string[]) => void;
   handleCardClick: (card: ICard) => void;
-  setError: (error: string | null) => void;
+  setError: React.Dispatch<React.SetStateAction<boolean | null>>;
 }
 
 export interface ImageData {
@@ -34,4 +34,8 @@ export interface IGameSession {
   playerName: string | null;
   matches: number;
   mistakes: number;
+}
+
+export interface IGenericModalError {
+  onClose: () => void;
 }

@@ -5,8 +5,8 @@ const LogoutButton: React.FC = () => {
   const { setGameSession } = useGameContext();
 
   const handleLogout = () => {
-    localStorage.removeItem("gameSession"); // Borra toda la sesión de juego
-    setGameSession(null); // Resetea la sesión en el estado del contexto
+    localStorage.removeItem("gameSession");
+    setGameSession(null);
   };
 
   return (

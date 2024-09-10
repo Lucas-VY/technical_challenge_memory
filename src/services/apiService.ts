@@ -10,8 +10,14 @@ export const fetchImages = async (): Promise<ImageData[]> => {
   }
 
   try {
-    const response = await fetch("https://challenge-uno.vercel.app/api/images");
-    console.log("🚀 ~ fetchImages ~ response:", response);
+    // Usa la variable de entorno para la URL de la API
+    const apiUrl = process.env.REACT_APP_API_URL;
+
+    if (!apiUrl) {
+      throw new Error("REACT_APP_API_URL is not defined");
+    }
+
+    const response = await fetch(`${apiUrl}/api/images`);
 
     if (!response.ok) {
       throw new Error("Failed to fetch images");
