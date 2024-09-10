@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .board {
+    @apply grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-1 mx-auto;
+    max-width: 100%;
+    padding: 5px;
+  }
+
+  @media (min-width: 768px) {
+    .board {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .board {
+      grid-template-columns: repeat(8, 1fr);
+    }
+  }
+}

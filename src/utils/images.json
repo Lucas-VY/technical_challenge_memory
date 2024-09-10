@@ -1,0 +1,122 @@
+[
+    {
+      "url": "https://challenge-uno.vercel.app/images/bear.jpg",
+      "uuid": "a747269a-0d5d-4cde-b23d-8f77ff20c4f0",
+      "title": "bear",
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://challenge-uno.vercel.app/images/bird.jpg",
+      "uuid": "755aceb6-0413-4fc4-9a75-706f4a985aa7",
+      "title": "bird",
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://challenge-uno.vercel.app/images/cat.jpg",
+      "uuid": "49b41157-21e5-4f4a-afe4-7e5edd31fa87",
+      "title": "cat",
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://challenge-uno.vercel.app/images/deer.jpg",
+      "uuid": "b8517f4a-8361-432c-b8f3-bacc04339d48",
+      "title": "deer",
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://challenge-uno.vercel.app/images/dog.jpg",
+      "uuid": "75734453-5853-4645-9bf5-a75afef8d951",
+      "title": "dog",
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://challenge-uno.vercel.app/images/dolphin.jpg",
+      "uuid": "cedbc175-b459-4e40-8cbe-0c5bbe26e62a",
+      "title": "dolphin",
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://challenge-uno.vercel.app/images/fish.jpg",
+      "uuid": "3576998d-e4fc-46e0-b306-ddf78791d8fd",
+      "title": "fish",
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://challenge-uno.vercel.app/images/fox.jpg",
+      "uuid": "4c582e77-5a54-4663-81da-e54d6fd8f6ad",
+      "title": "fox",
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://challenge-uno.vercel.app/images/frog.jpg",
+      "uuid": "b296a263-943e-42a3-aa62-8265f621ea15",
+      "title": "frog",
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://challenge-uno.vercel.app/images/lion.jpg",
+      "uuid": "f8fbddaa-45d4-4c55-9de4-090c41a09ee5",
+      "title": "lion",
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://challenge-uno.vercel.app/images/monkey.jpg",
+      "uuid": "073f6730-7640-4f01-904c-03544f5387e6",
+      "title": "monkey",
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://challenge-uno.vercel.app/images/mouse.jpg",
+      "uuid": "38ce8904-1343-4b90-8d53-2f5c18994d42",
+      "title": "mouse",
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://challenge-uno.vercel.app/images/penguin.jpg",
+      "uuid": "0fb88ff4-5072-45dd-b552-1e8d6268dd9a",
+      "title": "penguin",
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://challenge-uno.vercel.app/images/rabbit.jpg",
+      "uuid": "3de038d7-c59d-42e3-99e8-1d3caf00533e",
+      "title": "rabbit",
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://challenge-uno.vercel.app/images/seal.jpg",
+      "uuid": "1f08ffda-95b2-4b25-a244-910724614bcd",
+      "title": "seal",
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://challenge-uno.vercel.app/images/squirrel.jpg",
+      "uuid": "1e8f4d92-df88-444e-8eee-284b9d4b62a1",
+      "title": "squirrel",
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://challenge-uno.vercel.app/images/tiger.jpg",
+      "uuid": "21cd9655-b5f6-4dbf-a625-ba6d69c908cb",
+      "title": "tiger",
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://challenge-uno.vercel.app/images/turtle.jpg",
+      "uuid": "3e103abb-6520-4bdf-9502-3e9f58c313d6",
+      "title": "turtle",
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://challenge-uno.vercel.app/images/wild-pig.jpg",
+      "uuid": "a4284971-c061-4118-84ab-034daa3c057b",
+      "title": "wild-pig",
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://challenge-uno.vercel.app/images/zebra.jpg",
+      "uuid": "04c9da17-7453-403f-98a6-fa0975559985",
+      "title": "zebra",
+      "content_type": "image/jpeg"
+    }
+  ]

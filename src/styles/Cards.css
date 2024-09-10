@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .rotateY-180 {
+    transform: rotateY(180deg);
+  }
+
+  .rotateY-0 {
+    transform: rotateY(0deg);
+  }
+
+  .card {
+    @apply relative w-28 h-36 cursor-pointer transform transition-transform duration-500 ease-in-out;
+    perspective: 1000px;
+    margin: 2px;
+  }
+
+  .card__inner {
+    @apply relative w-full h-full transition-transform duration-500 ease-in-out;
+    transform-style: preserve-3d;
+  }
+
+  .card--flipped .card__inner {
+    transform: rotateY(180deg);
+  }
+
+  .card__front,
+  .card__back {
+    @apply absolute inset-0 w-full h-full flex justify-center items-center rounded-lg shadow-md;
+    backface-visibility: hidden;
+  }
+
+  .card__front {
+    @apply rotateY-0;
+    background-color: #f0ead6;
+  }
+
+  .card__back {
+    @apply rotateY-180;
+    background-color: #d4a373;
+  }
+
+  .card__image {
+    @apply w-full h-full object-cover;
+  }
+
+  .card__question {
+    @apply text-xl sm:text-2xl lg:text-3xl font-bold text-[#6b4226];
+  }
+}

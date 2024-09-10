@@ -2,17 +2,20 @@
   "name": "technical_challenge_memory",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://challenge-uno.vercel.app",
   "dependencies": {
+    "@heroicons/react": "^1.0.6",
+    "@tailwindcss/forms": "^0.5.9",
     "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.108",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
+    "ajv": "^8.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",
+    "semver": "^7.6.3",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
@@ -41,8 +44,17 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.25.2",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/preset-env": "^7.25.4",
+    "@babel/preset-react": "^7.24.7",
+    "@babel/preset-typescript": "^7.24.7",
+    "@types/node": "^22.5.4",
+    "@types/q": "^1.5.8",
+    "@types/resolve": "^1.20.6",
+    "@types/yargs": "^17.0.33",
     "autoprefixer": "^10.4.20",
+    "istanbul-lib-coverage": "^3.2.2",
     "postcss": "^8.4.45",
     "tailwindcss": "^3.4.10"
   }
