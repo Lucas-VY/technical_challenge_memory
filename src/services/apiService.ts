@@ -2,8 +2,6 @@ import { ImageData } from "../interfaces/gameInterfaces";
 import fakeImagesApi from "../utils/images.json"; // mock apiImages
 
 export const fetchImages = async (): Promise<ImageData[]> => {
-  console.log("Current REACT_APP_ENV:", process.env.REACT_APP_ENV);
-
   if (process.env.REACT_APP_ENV === "development") {
     console.log("Using fakeImagesApi data");
     return fakeImagesApi;

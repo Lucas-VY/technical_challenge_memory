@@ -85,6 +85,10 @@ You can then deploy the contents of the build folder to your preferred hosting p
 
 ### Link Deployed Project:
 
+```bash
+https://technical-challenge-memory.vercel.app/
+```
+
 Learn More
 You can learn more in the Create React App documentation.
 
