@@ -24,7 +24,7 @@ export const GameProvider: FC<{ children: React.ReactNode }> = ({
     const savedSession = localStorage.getItem("gameSession");
     return savedSession ? JSON.parse(savedSession) : null;
   });
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<boolean | null>(false);
 
   useEffect(() => {
     if (gameSession) {
@@ -44,7 +44,7 @@ export const GameProvider: FC<{ children: React.ReactNode }> = ({
         isMatched: false,
       }));
     } catch (err) {
-      setError("Error shuffling cards.");
+      setError(true);
       return [];
     }
   }, []);
@@ -61,7 +61,7 @@ export const GameProvider: FC<{ children: React.ReactNode }> = ({
         }));
         setFlippedCards([]);
       } catch (err) {
-        setError("Error initializing game.");
+        setError(true);
       }
     },
     [shuffleCards]
@@ -112,7 +112,7 @@ export const GameProvider: FC<{ children: React.ReactNode }> = ({
         setFlippedCards([]);
       }
     } catch (err) {
-      setError("Error handling card click.");
+      setError(true);
     }
   };
 
@@ -139,7 +139,6 @@ export const GameProvider: FC<{ children: React.ReactNode }> = ({
       {children}
       {error && (
         <GenericModalError
-          errorMessage={error}
           onClose={() => {
             setError(null);
             localStorage.removeItem("gameSession");

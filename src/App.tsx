@@ -21,7 +21,8 @@ const App: React.FC = () => {
           setLoading(false);
         }, 2000);
       } catch (error) {
-        setError("Failed to load images. Please try again later.");
+        setError(true)
+        console.error('Error, loadImages')
       }
     };
 
