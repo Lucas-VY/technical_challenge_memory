@@ -35,3 +35,7 @@ export interface IGameSession {
   matches: number;
   mistakes: number;
 }
+
+export interface IGenericModalError {
+  onClose: () => void;
+}

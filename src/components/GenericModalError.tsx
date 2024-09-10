@@ -1,11 +1,8 @@
 import React from "react";
 import { useGameContext } from "../context/GameContext";
+import { IGenericModalError } from "../interfaces/gameInterfaces";
 
-interface GenericModalErrorProps {
-  onClose: () => void;
-}
-
-const GenericModalError: React.FC<GenericModalErrorProps> = ({ onClose }) => {
+const GenericModalError: React.FC<IGenericModalError> = ({ onClose }) => {
   const { setGameSession } = useGameContext();
 
   const handleLogout = () => {
