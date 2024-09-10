@@ -1,5 +1,6 @@
 import React from "react";
 import { ICard } from "../interfaces/gameInterfaces";
+import '../styles/Cards.css';
 
 interface CardProps {
   card: ICard;

@@ -4,25 +4,38 @@ import Board from "./components/Board";
 import ScoreBoard from "./components/ScoreBoard";
 import GameOverModal from "./components/GameOverModal";
 import { fetchImages } from "./services/apiService";
-import PlayerName from "./components/PlayerName"; // Asegúrate de importar el componente
+import PlayerName from "./components/PlayerName";
+import Loader from "./components/Loader";
 
 const App: React.FC = () => {
-  const { initializeGame, playerName, setPlayerName } = useGameContext();
-  const [hasPrompted, setHasPrompted] = useState(false);
+  const { initializeGame, playerName, setPlayerName, setError } =
+    useGameContext();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadImages = async () => {
-      const imageUrls = await fetchImages();
-      initializeGame(imageUrls.map((image) => image.url));
+      try {
+        const imageUrls = await fetchImages();
+        initializeGame(imageUrls.map((image) => image.url));
+        setTimeout(() => {
+          setLoading(false);
+        }, 2000);
+      } catch (error) {
+        setError("Failed to load images. Please try again later.");
+      }
     };
 
     if (playerName) {
       loadImages();
     }
-  }, [initializeGame, playerName]);
+  }, [initializeGame, playerName, setError]);
 
   if (!playerName) {
     return <PlayerName onSetPlayerName={setPlayerName} />;
+  }
+
+  if (loading) {
+    return <Loader />;
   }
 
   return (

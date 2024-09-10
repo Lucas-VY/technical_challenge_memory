@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .loader {
+    @apply flex items-center justify-center h-screen;
+  }
+
+  .loader__text {
+    @apply text-2xl font-bold text-gray-700;
+  }
+
+  .loader__dot {
+    @apply inline-block mx-1;
+    animation: loader-blink 1.4s infinite both;
+  }
+
+  .loader__dot--2 {
+    animation-delay: 0.2s;
+  }
+
+  .loader__dot--3 {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes loader-blink {
+    0% {
+      opacity: 0.2;
+    }
+    20% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.2;
+    }
+  }
+}

@@ -2,11 +2,11 @@ import React from "react";
 import { useGameContext } from "../context/GameContext";
 
 const LogoutButton: React.FC = () => {
-  const { setPlayerName } = useGameContext();
+  const { setGameSession } = useGameContext();
 
   const handleLogout = () => {
-    localStorage.removeItem("playerName");
-    setPlayerName(null);
+    localStorage.removeItem("gameSession"); // Borra toda la sesión de juego
+    setGameSession(null); // Resetea la sesión en el estado del contexto
   };
 
   return (

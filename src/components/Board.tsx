@@ -2,6 +2,7 @@ import React from "react";
 import { ICard } from "../interfaces/gameInterfaces";
 import Card from "./Card";
 import { useGameContext } from "../context/GameContext";
+import '../styles/Board.css'
 
 const Board: React.FC = () => {
   const { cards, handleCardClick } = useGameContext();

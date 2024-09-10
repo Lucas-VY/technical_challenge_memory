@@ -6,7 +6,12 @@ import React, {
   FC,
   useCallback,
 } from "react";
-import { ICard, IGameContext } from "../interfaces/gameInterfaces";
+import {
+  ICard,
+  IGameContext,
+  IGameSession,
+} from "../interfaces/gameInterfaces";
+import GenericModalError from "../components/GenericModalError";
 
 const GameContext = createContext<IGameContext | undefined>(undefined);
 
@@ -15,98 +20,132 @@ export const GameProvider: FC<{ children: React.ReactNode }> = ({
 }) => {
   const [cards, setCards] = useState<ICard[]>([]);
   const [flippedCards, setFlippedCards] = useState<ICard[]>([]);
-  const [matches, setMatches] = useState(0);
-  const [mistakes, setMistakes] = useState(0);
-  const [playerName, setPlayerName] = useState<string | null>(null);
+  const [gameSession, setGameSession] = useState<IGameSession | null>(() => {
+    const savedSession = localStorage.getItem("gameSession");
+    return savedSession ? JSON.parse(savedSession) : null;
+  });
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const savedPlayerName = localStorage.getItem("playerName");
-    if (savedPlayerName) {
-      setPlayerName(savedPlayerName);
+    if (gameSession) {
+      localStorage.setItem("gameSession", JSON.stringify(gameSession));
     }
-  }, []);
+  }, [gameSession]);
 
   const shuffleCards = useCallback((images: string[]): ICard[] => {
-    const shuffledImages = [...images, ...images].sort(
-      () => Math.random() - 0.5
-    );
-    return shuffledImages.map((imageUrl, index) => ({
-      id: index,
-      imageUrl,
-      isFlipped: false,
-      isMatched: false,
-    }));
+    try {
+      const shuffledImages = [...images, ...images].sort(
+        () => Math.random() - 0.5
+      );
+      return shuffledImages.map((imageUrl, index) => ({
+        id: index,
+        imageUrl,
+        isFlipped: false,
+        isMatched: false,
+      }));
+    } catch (err) {
+      setError("Error shuffling cards.");
+      return [];
+    }
   }, []);
 
   const initializeGame = useCallback(
     (images: string[]) => {
-      const shuffledCards = shuffleCards(images);
-      setCards(shuffledCards);
-      setMatches(0);
-      setMistakes(0);
-      setFlippedCards([]);
+      try {
+        const shuffledCards = shuffleCards(images);
+        setCards(shuffledCards);
+        setGameSession((prevSession) => ({
+          playerName: prevSession?.playerName || "",
+          matches: 0,
+          mistakes: 0,
+        }));
+        setFlippedCards([]);
+      } catch (err) {
+        setError("Error initializing game.");
+      }
     },
     [shuffleCards]
   );
 
   const handleCardClick = (card: ICard) => {
-    if (flippedCards.length === 2 || card.isFlipped || card.isMatched) {
-      return;
-    }
+    try {
+      if (flippedCards.length === 2 || card.isFlipped || card.isMatched) {
+        return;
+      }
 
-    const newFlippedCards = [...flippedCards, card];
-    setFlippedCards(newFlippedCards);
+      const newFlippedCards = [...flippedCards, card];
+      setFlippedCards(newFlippedCards);
 
-    setCards((prevCards) =>
-      prevCards.map((c) => (c.id === card.id ? { ...c, isFlipped: true } : c))
-    );
+      setCards((prevCards) =>
+        prevCards.map((c) => (c.id === card.id ? { ...c, isFlipped: true } : c))
+      );
 
-    if (newFlippedCards.length === 2) {
-      const [firstCard, secondCard] = newFlippedCards;
-      if (firstCard.imageUrl === secondCard.imageUrl) {
-        setMatches(matches + 1);
-        setCards((prevCards) =>
-          prevCards.map((c) =>
-            c.imageUrl === firstCard.imageUrl
-              ? { ...c, isMatched: true, isFlipped: true }
-              : c
-          )
-        );
-      } else {
-        setMistakes(mistakes + 1);
-        setTimeout(() => {
+      if (newFlippedCards.length === 2) {
+        const [firstCard, secondCard] = newFlippedCards;
+        if (firstCard.imageUrl === secondCard.imageUrl) {
+          setGameSession((prevSession) => ({
+            ...prevSession!,
+            matches: (prevSession?.matches || 0) + 1,
+          }));
           setCards((prevCards) =>
             prevCards.map((c) =>
-              c.id === firstCard.id || c.id === secondCard.id
-                ? { ...c, isFlipped: false }
+              c.imageUrl === firstCard.imageUrl
+                ? { ...c, isMatched: true, isFlipped: true }
                 : c
             )
           );
-        }, 1000);
+        } else {
+          setGameSession((prevSession) => ({
+            ...prevSession!,
+            mistakes: (prevSession?.mistakes || 0) + 1,
+          }));
+          setTimeout(() => {
+            setCards((prevCards) =>
+              prevCards.map((c) =>
+                c.id === firstCard.id || c.id === secondCard.id
+                  ? { ...c, isFlipped: false }
+                  : c
+              )
+            );
+          }, 1000);
+        }
+        setFlippedCards([]);
       }
-      setFlippedCards([]);
+    } catch (err) {
+      setError("Error handling card click.");
     }
   };
-
-  useEffect(() => {
-    if (playerName) {
-      localStorage.setItem("playerName", playerName);
-    }
-  }, [playerName]);
 
   return (
     <GameContext.Provider
       value={{
         cards,
-        matches,
-        mistakes,
-        playerName,
-        setPlayerName,
+        matches: gameSession?.matches || 0,
+        mistakes: gameSession?.mistakes || 0,
+        playerName: gameSession?.playerName || null,
+        setPlayerName: (name) => {
+          setGameSession((prevSession) => ({
+            playerName: name,
+            matches: prevSession?.matches || 0,
+            mistakes: prevSession?.mistakes || 0,
+          }));
+        },
         initializeGame,
         handleCardClick,
+        setGameSession,
+        setError,
       }}
     >
       {children}
+      {error && (
+        <GenericModalError
+          errorMessage={error}
+          onClose={() => {
+            setError(null);
+            localStorage.removeItem("gameSession");
+          }}
+        />
+      )}
     </GameContext.Provider>
   );
 };
