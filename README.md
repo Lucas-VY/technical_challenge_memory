@@ -86,7 +86,7 @@ You can then deploy the contents of the build folder to your preferred hosting p
 ### Link Deployed Project:
 
 ```bash
-challenge-memory-proj.vercel.app
+https://technical-challenge-memory.vercel.app/
 ```
 
 Learn More
